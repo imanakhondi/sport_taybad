@@ -1,7 +1,7 @@
 import CryptoJS from "crypto-js";
 
-import { LOCALES } from "../constants";
-import { en, fa } from "../constants/strings";
+// import { LOCALES } from "../constants";
+// import { en, fa } from "../constants/strings";
 
 
 
@@ -112,17 +112,17 @@ console.log("kasrrrrrrrrrrrr",user)
   return user;
 };
 
-const getLSLocale = () => {
-  const locale = getLSVariable("locale");
-  switch (locale) {
-    case LOCALES.EN:
-      return en;
-    case LOCALES.FA:
-      return fa;
-    default:
-      return fa;
-  }
-};
+// const getLSLocale = () => {
+//   const locale = getLSVariable("locale");
+//   switch (locale) {
+//     case LOCALES.EN:
+//       return en;
+//     case LOCALES.FA:
+//       return fa;
+//     default:
+//       return fa;
+//   }
+// };
 
 const convertNumberToPersion = () => {
   let persian = {
@@ -341,13 +341,13 @@ const isNumber = (number) => !isNaN(parseInt(number));
 
 const isId = (id) => !isNaN(parseInt(id)) && id > 0;
 
-const initLocale = () => {
-  const locale = getLSVariable("locale");
-  if (![LOCALES.EN, LOCALES.FA].includes(locale)) {
-    setLSVariable("locale", LOCALES.FA);
-  }
-  return getLSVariable("locale");
-};
+// const initLocale = () => {
+//   const locale = getLSVariable("locale");
+//   if (![LOCALES.EN, LOCALES.FA].includes(locale)) {
+//     setLSVariable("locale", LOCALES.FA);
+//   }
+//   return getLSVariable("locale");
+// };
 
 
 
@@ -357,7 +357,7 @@ const utils = {
   setLSVariable,
   getLSToken,
   getLSUser,
-  getLSLocale,
+  // getLSLocale,
   clearLS,
   convertNumberToPersion,
   convertNumberToEnglish,
@@ -370,7 +370,7 @@ const utils = {
   wordifyfa,
   isNumber,
   isId,
-  initLocale,
+  // initLocale,
 };
 
 export default utils;

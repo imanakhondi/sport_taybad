@@ -17,6 +17,11 @@ function fetchUserFailure(error) {
     type: userType.FETCH_LOGIN_USER_FAILURE,
     payload: error,
   };
+  function fetchLogoutUser(){
+    return {
+        type:userType.FETCH_LOGOUT_USER_REQUEST,
+    }
+  }
 }
 
 export const fetchUser = () => {

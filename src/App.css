@@ -2,37 +2,60 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: "IRANSansWeb";
+  src: local("IRANSansWeb"),
+    url("../public/assets/fonts/iransans/IRANSansWeb.ttf") format("truetype");
+  font-weight: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: "IRANSansWeb_FaNum";
+  src: local("IRANSansWeb_FaNum"),
+    url("../public/assets/fonts/iransans/IRANSansWeb_FaNum.ttf") format("truetype");
+  font-weight: normal;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@font-face {
+  font-family: "ficon";
+  src: url("../public/assets/fonts/icon/ficon.woff?") format("woff"),
+    url("../public/assets/fonts/icon/ficon.woff?#ficon") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
-
-.App-link {
-  color: #61dafb;
+[class^="icon-"]:before,
+[class*="icon-"]:before {
+  font-family: "ficon";
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: 0.2em;
+  transition: all 0.4s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.icon-category4:before {
+  content: "\e817";
+} 
+.icon-personalcard:before {
+  content: "\f0e2";
+} 
+.icon-logout4:before {
+  content: "\e946";
+} 
+.icon-profile-2user4:before {
+  content: "\e9d8";
+} 
+.icon-people4:before {
+  content: "\e9c8";
+} 
+.icon-profile-add4:before {
+  content: "\e9d9";
+} 

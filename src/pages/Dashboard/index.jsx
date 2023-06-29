@@ -1,7 +1,7 @@
 const Dashboard = () => {
     return ( 
-        <div>
-            this is dashborad
+        <div className="container" >
+            این صفحه داشبورد است
         </div>
      );
 }
