@@ -10,7 +10,7 @@ export default function AuthRoute() {
       {/* <Routes>
         <Route path="/" element={<Pages.Dashboard />} />
       </Routes> */}
-      {userState.isAuthenticated && (
+      {/* {userState.isAuthenticated && (
         <Routes>
           <Route path="/" element={<Pages.Dashboard />} />
         </Routes>
@@ -32,7 +32,26 @@ export default function AuthRoute() {
             <Route path="trainers" element={<Pages.Trainers />} />
           </Route>
         </Routes>
-      )}
+      )} */}
+      <Routes>
+        <Route path="/" element={<Pages.HomePage />} />
+        <Route path="login" element={<Pages.Login />} />
+        <Route path="forget" element={<Pages.ForgetPassword />} />
+        <Route path="referee" element={<Pages.AddReferees />} />
+        <Route path="student" element={<Pages.AddStudents />} />
+        <Route path="manager" element={<Pages.AddManagers />} />
+        <Route path="trainer" element={<Pages.AddTrainers />} />
+        <Route path="panel" element={<PanelLayoutPage />}>
+          <Route path="dashboard" element={<Pages.Dashboard />} />
+          <Route path="referees" element={<Pages.Referees />} />
+          <Route path="students" element={<Pages.Students />} />
+          <Route path="managers" element={<Pages.Managers />} />
+          <Route path="trainers" element={<Pages.Trainers />} />
+          <Route path="users" element={<Pages.Users />} />
+          <Route path="user/add" element={<Pages.AddUser />} />
+          <Route path="user/change_password" element={<Pages.ChangePassword />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

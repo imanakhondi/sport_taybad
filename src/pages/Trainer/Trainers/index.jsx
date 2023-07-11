@@ -1,9 +1,9 @@
-const AddTrainers = () => {
+const Trainers = () => {
     return ( 
         <div className="container" >
-            این صفحه AddTrainers است
+            این صفحه Trainers است
         </div>
      );
 }
  
-export default AddTrainers;
+export default Trainers;

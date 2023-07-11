@@ -1,4 +1,4 @@
-import * as actions from "./usertypes";
+import * as actions from "./userTypes";
 import utils from "../../utils/Utils";
 
 const initialState = {
@@ -19,6 +19,11 @@ const userReducer = (state = initialState, { type, payload }) => {
         loading: false,
         user: payload.user,
         error: "",
+      };
+      case actions.FETCH_AUTH_ACTION:
+      return {
+        ...state,
+        user: payload,
       };
     case actions.FETCH_LOGIN_USER_FAILURE:
       return {

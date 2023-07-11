@@ -49,7 +49,13 @@ const SideBar = () => {
         },
         {
           title: `${sidebar.addUsers}`,
-          to: "newuser",
+          to: "user/add",
+          icon: "profile-add4",
+          style: "",
+        },
+        {
+          title: `${sidebar.changePassword}`,
+          to: "user/change_password",
           icon: "profile-add4",
           style: "",
         },
@@ -65,7 +71,7 @@ const SideBar = () => {
 
   return (
     <div>
-      <nav className="pl-5 overflow-x-hidden hidden md:block w-20 xl:w-[230px] font-IRANSansWeb bg-[#1B1C21] border border-[#313131] min-h-min ">
+      <nav className="pl-5 overflow-x-hidden hidden md:block w-20 xl:w-[230px] font-IRANSansWeb bg-navBgColor border border-borderColor min-h-min ">
         <Link to="#" className=" flex items-center text-white pt-4 pr-5">
           <img src={logo} alt="logo" className="w-20 h-20 ml-2" />
           <span className=" xl:flex font-bold hidden "> {sidebar._title} </span>
@@ -153,7 +159,7 @@ export const MenuItems = ({ items, index }) => {
   );
 };
 
-export const Dropdown = ({ submenus, dropdown, sub, setSub }) => {
+export const Dropdown = ({ submenus, dropdown }) => {
   return (
     <ul
       className={`mr-1 xl:mr-5 ${
@@ -166,7 +172,7 @@ export const Dropdown = ({ submenus, dropdown, sub, setSub }) => {
             to={submenu.to}
             className={(navData) => {
               return navData.isActive
-                ? "bg-slate-100 flex items-center text-slate-800 h-[50px] mb-1 pr-5 rounded-r-full relative z-10 "
+                ? ` flex items-center h-[50px] mb-1 pr-5 rounded-r-full relative z-10 text-warningColor`
                 : "flex items-center text-white relative h-[50px] mb-1 pr-5 rounded-r-full  ";
             }}
           >

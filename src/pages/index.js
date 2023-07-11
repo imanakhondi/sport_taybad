@@ -3,13 +3,16 @@ import Dashboard from "./Dashboard";
 import Login from "./User/Login";
 import ForgetPassword from "./User/ForgetPassword";
 import Trainers from "./Trainer/Trainers";
-import AddTrainers from "./Trainer/Trainers";
+import AddTrainers from "./Trainer/AddTrainers";
 import Managers from "./Managers/Managers";
 import AddManagers from "./Managers/AddManagers";
 import Referees from "./Referee/Referees";
 import AddReferees from "./Referee/AddReferees";
 import Students from "./Student/Students";
 import AddStudents from "./Student/AddStudents";
+import AddUser from "./User/AddUser";
+import Users from "./User/Users";
+import ChangePassword from "./User/ChangePassword";
 
 export {
   HomePage,
@@ -23,5 +26,9 @@ export {
   Referees,
   AddReferees,
   Students,
-  AddStudents
+  AddStudents,
+  AddUser,
+  Users,
+  ChangePassword,
+  
 };

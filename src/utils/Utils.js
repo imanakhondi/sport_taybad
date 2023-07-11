@@ -55,7 +55,7 @@ const getLSVariable = (key) => {
 
     if (!text) return null;
 
-    const bytes = CryptoJS.AES.decrypt(text, "top_traders_funding");
+    const bytes = CryptoJS.AES.decrypt(text, "sport-taybad");
     const value = bytes.toString(CryptoJS.enc.Utf8);
 
     return value;
@@ -66,7 +66,7 @@ const getLSVariable = (key) => {
 
 const setLSVariable = (key, value) => {
   try {
-    const text = CryptoJS.AES.encrypt(value, "top_traders_funding").toString();
+    const text = CryptoJS.AES.encrypt(value, "sport-taybad").toString();
 
     localStorage.setItem(key, text);
   } catch (error) {}
@@ -108,7 +108,6 @@ const getLSUser = () => {
 
     return null;
   }
-console.log("kasrrrrrrrrrrrr",user)
   return user;
 };
 

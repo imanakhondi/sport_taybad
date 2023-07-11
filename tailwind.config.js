@@ -13,11 +13,12 @@ module.exports = {
         ficon: ["ficon"],
       },
       backgroundImage: {
-        // "hero-lg": "url('./images/m1.svg')",
+        "BlobForm": "url('./images/Ellipse.png')",
       },
       colors: {
         mainBgColor: "#212227",
         navBgColor: "#1B1C21",
+        borderColor: "#313131",
         primaryColor: "#A4A4A4",
         secondaryColor: "#1f4caf",
         warningColor: "#F5C451",
