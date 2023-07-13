@@ -1,8 +1,13 @@
 import { useFormik } from "formik";
 import Input from "../../../../common/Input/Input";
-import { AddManagersPage, general } from "../../../../constants/strings/fa";
+import {
+  AddManagersPage,
+  general,
+  validation,
+} from "../../../../constants/strings/fa";
 import * as Yup from "yup";
 import TextAreaInput from "../../../../common/Input/TextAreaInput";
+import SubmitButton from  "../../../../common/Input/SubmitButton"
 
 const initialValues = {
   mobile: "",
@@ -12,14 +17,43 @@ const initialValues = {
   homeAddress: "",
   workAddress: "",
 };
+
 const validationSchema = Yup.object({
-  name: Yup.string(),
-  // family: Yup.string().required("نام ضروری است"),
-  // fatherName: Yup.string().required("نام ضروری است"),
-  // birthDate: Yup.string().required("نام ضروری است"),
-  // placeOfBirth: Yup.string().required("نام ضروری است"),
-  // identityNo: Yup.string().required("نام ضروری است"),
-  // nationalCode: Yup.string().required("نام ضروری است"),
+  mobile: Yup.string()
+    .required(
+      `${validation.requiredMessage.replace(":field", AddManagersPage.mobile)}`
+    )
+    .matches(
+      /^[0-9]{10}$/,
+      `${validation.exactDigitMessage.replace(
+        ":field",
+        AddManagersPage.mobile
+      )}`
+    ),
+  // tel: Yup.string().required(
+  //   `${validation.requiredMessage.replace(":field", AddManagersPage.tel)}`
+  // ),
+  // fieldOfStudy: Yup.string().required(
+  //   `${validation.requiredMessage.replace(
+  //     ":field",
+  //     AddManagersPage.fieldOfStudy
+  //   )}`
+  // ),
+  // email: Yup.string().required(
+  //   `${validation.requiredMessage.replace(":field", AddManagersPage.email)}`
+  // ),
+  // homeAddress: Yup.string().required(
+  //   `${validation.requiredMessage.replace(
+  //     ":field",
+  //     AddManagersPage.homeAddress
+  //   )}`
+  // ),
+  // workAddress: Yup.string().required(
+  //   `${validation.requiredMessage.replace(
+  //     ":field",
+  //     AddManagersPage.workAddress
+  //   )}`
+  // ),
 });
 
 const StepTwo = ({
@@ -50,6 +84,7 @@ const StepTwo = ({
         placeholder={`${AddManagersPage.mobilePlaceholder}`}
         label={`${AddManagersPage.mobile}`}
         type="number"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="tel"
@@ -57,12 +92,14 @@ const StepTwo = ({
         placeholder={`${AddManagersPage.telPlaceholder}`}
         label={`${AddManagersPage.tel}`}
         type="number"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="fieldOfStudy"
         formik={formik}
         placeholder={`${AddManagersPage.fieldOfStudyPlaceholder}`}
         label={`${AddManagersPage.fieldOfStudy}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="email"
@@ -70,27 +107,26 @@ const StepTwo = ({
         placeholder={`${AddManagersPage.emailPlaceholder}`}
         label={`${AddManagersPage.email}`}
         type="email"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <TextAreaInput
         name="homeAddress"
         formik={formik}
         placeholder={`${AddManagersPage.homeAddressPlaceholder}`}
         label={`${AddManagersPage.homeAddress}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <TextAreaInput
         name="workAddress"
         formik={formik}
         placeholder={`${AddManagersPage.workAddressPlaceholder}`}
         label={`${AddManagersPage.workAddress}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
 
-      <button
-        type="submit"
-        // disabled={!formik.isValid}
-        className=" outline-none w-full border-none rounded text-white bg-secondaryColor my-8 px-4 py-3 cursor-pointer disabled:border-[#999999] disabled:bg-[#cccccc] disabled:text-[#666666] disabled:cursor-not-allowed"
-      >
-        {general.next}
-      </button>
+      <SubmitButton disabled="" submit={general.next} />
+       {/* disabled={!formik.isValid} */}
+     
     </form>
   );
 };

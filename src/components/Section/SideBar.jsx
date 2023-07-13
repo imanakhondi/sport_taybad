@@ -71,8 +71,8 @@ const SideBar = () => {
 
   return (
     <div>
-      <nav className="pl-5 overflow-x-hidden hidden md:block w-20 xl:w-[230px] font-IRANSansWeb bg-navBgColor border border-borderColor min-h-min ">
-        <Link to="#" className=" flex items-center text-white pt-4 pr-5">
+      <nav className="pl-5 overflow-x-hidden hidden md:block w-20 xl:w-[230px] font-IRANSansWeb bg-navBgColor border border-borderColor min-h-min dark:bg-navBgColorDark dark:border-borderColorDark ">
+        <Link to="#" className=" flex items-center text-primaryColorDark pt-4 pr-5 dark:text-primaryColor">
           <img src={logo} alt="logo" className="w-20 h-20 ml-2" />
           <span className=" xl:flex font-bold hidden "> {sidebar._title} </span>
         </Link>
@@ -116,7 +116,7 @@ export const MenuItems = ({ items, index }) => {
               className={
                 sub
                   ? "bg-slate-100 flex items-center text-slate-800 h-[50px] mb-1 pr-5 rounded-r-full relative z-10  "
-                  : "flex items-center text-white relative h-[50px] mb-1 pr-5 rounded-r-full  "
+                  : "flex items-center text-primaryColorDark relative h-[50px] mb-1 pr-5 rounded-r-full dark:text-primaryColor "
               }
             >
               <i className={`icon-${items.icon} text-xl ml-3`}></i>
@@ -144,8 +144,8 @@ export const MenuItems = ({ items, index }) => {
             key={index}
             className={(navData) => {
               return navData.isActive
-                ? " flex items-center text-warningColor h-[50px] mb-1 pr-5 rounded-r-full relative z-10 "
-                : `flex items-center text-white relative h-[50px] mb-1 pr-5 rounded-r-full hover:bg-[#ffffff14] ${items.style} `;
+                ? " flex items-center font-bold text-warningColorDark h-[50px] mb-1 pr-5 rounded-r-full relative z-10 dark:text-warningColor"
+                : `flex items-center text-primaryColorDark relative h-[50px] mb-1 pr-5 rounded-r-full hover:bg-[#ffffff14] dark:text-primaryColor ${items.style} `;
             }}
           >
             <i className={`icon-${items.icon} text-xl ml-3`}></i>
@@ -163,7 +163,7 @@ export const Dropdown = ({ submenus, dropdown }) => {
   return (
     <ul
       className={`mr-1 xl:mr-5 ${
-        dropdown ? "h-auto rounded-lg bg-[#0000001a]" : "h-0 overflow-hidden"
+        dropdown ? "h-auto rounded-lg bg-[#00000006] dark:bg-[#0000001a]" : "h-0 overflow-hidden"
       } `}
     >
       {submenus.map((submenu, index) => (
@@ -172,8 +172,8 @@ export const Dropdown = ({ submenus, dropdown }) => {
             to={submenu.to}
             className={(navData) => {
               return navData.isActive
-                ? ` flex items-center h-[50px] mb-1 pr-5 rounded-r-full relative z-10 text-warningColor`
-                : "flex items-center text-white relative h-[50px] mb-1 pr-5 rounded-r-full  ";
+                ? ` flex items-center h-[50px] mb-1 pr-5 font-bold rounded-r-full relative z-10 text-warningColorDark dark:text-warningColor`
+                : "flex items-center text-primaryColorDark relative h-[50px] mb-1 pr-5 rounded-r-full dark:text-primaryColor ";
             }}
           >
             <i

@@ -1,58 +1,103 @@
 import { useFormik } from "formik";
 import Input from "../../../../common/Input/Input";
-import { AddStudentsPage, general } from "../../../../constants/strings/fa";
+import {
+  AddStudentsPage,
+  general,
+  validation,
+} from "../../../../constants/strings/fa";
 
 import * as Yup from "yup";
 import SelectInput from "../../../../common/Input/SelectInput";
 import TextAreaInput from "../../../../common/Input/TextAreaInput";
+import { Student } from "../../../../http/entities";
+import SubmitButton from "../../../../common/Input/SubmitButton";
 
 const gameExperienceOptions = [
   { id: 1, title: `${AddStudentsPage.oneToFourYears}` },
   { id: 2, title: `${AddStudentsPage.fiveToEightYears}` },
   { id: 3, title: `${AddStudentsPage.nineToTwelveYears}` },
   { id: 4, title: `${AddStudentsPage.thirteenToSeventeenYears}` },
-  { id: 5, title: `${AddStudentsPage.eighteenYearsAndOlder}` }
+  { id: 5, title: `${AddStudentsPage.eighteenYearsAndOlder}` },
 ];
 const coachingExperienceOptions = [
   { id: 1, title: `${AddStudentsPage.oneToFourYears}` },
   { id: 2, title: `${AddStudentsPage.fiveToEightYears}` },
   { id: 3, title: `${AddStudentsPage.nineToTwelveYears}` },
   { id: 4, title: `${AddStudentsPage.thirteenToSeventeenYears}` },
-  { id: 5, title: `${AddStudentsPage.eighteenYearsAndOlder}` }
+  { id: 5, title: `${AddStudentsPage.eighteenYearsAndOlder}` },
 ];
 const RefereeExperienceOptions = [
   { id: 1, title: `${AddStudentsPage.oneToFourYears}` },
   { id: 2, title: `${AddStudentsPage.fiveToEightYears}` },
   { id: 3, title: `${AddStudentsPage.nineToTwelveYears}` },
   { id: 4, title: `${AddStudentsPage.thirteenToSeventeenYears}` },
-  { id: 5, title: `${AddStudentsPage.eighteenYearsAndOlder}` }
+  { id: 5, title: `${AddStudentsPage.eighteenYearsAndOlder}` },
 ];
 
 const initialValues = {
   sportsField: "",
   gameExperience: "",
-  records:""
+  records: "",
 };
 const validationSchema = Yup.object({
-  name: Yup.string(),
-  // family: Yup.string().required("نام ضروری است"),
-  // fatherName: Yup.string().required("نام ضروری است"),
-  // birthDate: Yup.string().required("نام ضروری است"),
-  // placeOfBirth: Yup.string().required("نام ضروری است"),
-  // identityNo: Yup.string().required("نام ضروری است"),
-  // nationalCode: Yup.string().required("نام ضروری است"),
+  sportsField: Yup.string().required(
+    `${validation.requiredMessage.replace(
+      ":field",
+      AddStudentsPage.sportsField
+    )}`
+  ),
 });
 
-const StepThree = ({
-  formData,
-  setFormData,
-  activeStepIndex,
-  setActiveStepIndex,
-}) => {
-  const onSubmit = (values) => {
+const StepThree = ({ formData, setFormData }) => {
+  const onSubmit = async (values) => {
+    const student = new Student();
+
     const data = { ...formData, ...values };
     setFormData(data);
-    setActiveStepIndex(activeStepIndex + 1);
+    const {
+      name,
+      family,
+      fatherName,
+      birthDate,
+      placeOfBirth,
+      identityNo,
+      nationalCode,
+      mobile,
+      tel,
+      fieldOfStudy,
+      email,
+      homeAddress,
+      workAddress,
+      sportsField,
+      gameExperience,
+      records,
+    } = data;
+    const result = await student.storeStudent(
+      name,
+      family,
+      fatherName,
+      birthDate,
+      placeOfBirth,
+      identityNo,
+      nationalCode,
+      mobile,
+      tel,
+      fieldOfStudy,
+      email,
+      homeAddress,
+      workAddress,
+      sportsField,
+      gameExperience,
+      records
+    );
+
+    if (result === null) {
+      //show message failure
+
+      return;
+    }
+    //show message success
+    // setActiveStepIndex(activeStepIndex + 1);
   };
   const formik = useFormik({
     initialValues,
@@ -71,42 +116,41 @@ const StepThree = ({
         placeholder={`${AddStudentsPage.sportsFieldPlaceholder}`}
         label={`${AddStudentsPage.sportsField}`}
         type="number"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
-       <SelectInput
+      <SelectInput
         name="gameExperience"
         formik={formik}
         placeholder={`${AddStudentsPage.gameExperience}`}
         label={`${AddStudentsPage.gameExperience}`}
         selectOptions={gameExperienceOptions}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
-       <SelectInput
+      <SelectInput
         name="coachingExperience"
         formik={formik}
         placeholder={`${AddStudentsPage.coachingExperience}`}
         label={`${AddStudentsPage.coachingExperience}`}
         selectOptions={coachingExperienceOptions}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
-       <SelectInput
+      <SelectInput
         name="RefereeExperience"
         formik={formik}
         placeholder={`${AddStudentsPage.RefereeExperience}`}
         label={`${AddStudentsPage.RefereeExperience}`}
         selectOptions={RefereeExperienceOptions}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
-     <TextAreaInput
-     name="records"
-     formik={formik}
-     placeholder={`${AddStudentsPage.recordsPlaceholder}`}
-     label={`${AddStudentsPage.records}`}
-     />
-
-      <button
-        type="submit"
-        // disabled={!formik.isValid}
-        className=" outline-none w-full border-none rounded text-white bg-secondaryColor my-8 px-4 py-3 cursor-pointer disabled:border-[#999999] disabled:bg-[#cccccc] disabled:text-[#666666] disabled:cursor-not-allowed"
-      >
-        {general.add}
-      </button>
+      <TextAreaInput
+        name="records"
+        formik={formik}
+        placeholder={`${AddStudentsPage.recordsPlaceholder}`}
+        label={`${AddStudentsPage.records}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
+      />
+      <SubmitButton disabled="" submit={general.add} />
+      {/* disabled={!formik.isValid} */}
     </form>
   );
 };

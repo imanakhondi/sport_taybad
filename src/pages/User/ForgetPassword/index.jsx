@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import Input from "../../../common/Input/Input";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../../http/entities";
+import SubmitButton from "../../../common/Input/SubmitButton";
 
 const initialValues = {
   email: "",
@@ -35,7 +36,7 @@ const ForgetPassword = () => {
     validateOnMount: true,
   });
   return (
-    <div className="container overflow-hidden">
+    <div className="container overflow-hidden bg-mainBgColorDark">
       <div className="flex min-h-screen max-w-7xl mx-auto font-IRANSansWeb">
         <div className="flex-[3] hidden md:flex items-center justify-center text-white">
           <h1 className=" text-2xl font-bold border-b border-dashed pb-10 animate-rightAnimate">
@@ -56,11 +57,10 @@ const ForgetPassword = () => {
                 formik={formik}
                 placeholder={`${forgotPasswordPage.email}`}
                 custom="lg:w-full"
-                customStyleInput="!border-[#AFAFAF] rounded-xl"
+                customStyleInput="!border-[#AFAFAF] rounded-xl placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
               />
-              <button className=" bg-gradient-to-r from-secondaryColor to-[#040F75] rounded-xl p-3 mt-3">
-                {forgotPasswordPage.submit}
-              </button>
+              <SubmitButton disabled="" />
+              {/* disabled={!formik.isValid} */}
             </form>
             <span className="text-xs mt-5">
               {forgotPasswordPage.forgot}

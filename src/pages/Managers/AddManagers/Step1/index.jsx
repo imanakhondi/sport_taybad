@@ -1,10 +1,15 @@
 import { useFormik } from "formik";
 import Input from "../../../../common/Input/Input";
-import { AddManagersPage, general } from "../../../../constants/strings/fa";
+import {
+  AddManagersPage,
+  general,
+  validation,
+} from "../../../../constants/strings/fa";
 import DateObject from "react-date-object";
 import * as Yup from "yup";
 import SelectInput from "../../../../common/Input/SelectInput";
 import DateInput from "../../../../common/Input/DateInput";
+import SubmitButton from "../../../../common/Input/SubmitButton";
 
 const bloodTypeOptions = [
   { id: 1, title: "A+" },
@@ -34,13 +39,39 @@ const initialValues = {
   nationalCode: "",
 };
 const validationSchema = Yup.object({
-  name: Yup.string(),
-  //   family: Yup.string().required("نام ضروری است"),
-  //   fatherName: Yup.string().required("نام ضروری است"),
-  //   birthDate: Yup.string().required("نام ضروری است"),
-  //   placeOfBirth: Yup.string().required("نام ضروری است"),
-  //   identityNo: Yup.string().required("نام ضروری است"),
-  //   nationalCode: Yup.string().required("نام ضروری است"),
+  // name: Yup.string().required(
+  //   `${validation.requiredMessage.replace(":field", AddRefereesPage.name)}`
+  // ),
+  // family: Yup.string().required(
+  //   `${validation.requiredMessage.replace(":field", AddRefereesPage.family)}`
+  // ),
+  // fatherName: Yup.string().required(
+  //   `${validation.requiredMessage.replace(
+  //     ":field",
+  //     AddRefereesPage.fatherName
+  //   )}`
+  // ),
+  // birthDate: Yup.string().required(
+  //   `${validation.requiredMessage.replace(":field", AddRefereesPage.birthDate)}`
+  // ),
+  // placeOfBirth: Yup.string().required(
+  //   `${validation.requiredMessage.replace(
+  //     ":field",
+  //     AddRefereesPage.placeOfBirth
+  //   )}`
+  // ),
+  // identityNo: Yup.string().required(
+  //   `${validation.requiredMessage.replace(
+  //     ":field",
+  //     AddRefereesPage.identityNo
+  //   )}`
+  // ),
+  // nationalCode: Yup.string().required(
+  //   `${validation.requiredMessage.replace(
+  //     ":field",
+  //     AddRefereesPage.nationalCode
+  //   )}`
+  // )
 });
 
 const StepOne = ({
@@ -63,8 +94,6 @@ const StepOne = ({
     validateOnMount: true,
   });
 
- 
-
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -75,33 +104,40 @@ const StepOne = ({
         formik={formik}
         placeholder={`${AddManagersPage.namePlaceholder}`}
         label={`${AddManagersPage.name}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
-      
+
       <Input
         name="family"
         formik={formik}
         placeholder={`${AddManagersPage.familyPlaceholder}`}
         label={`${AddManagersPage.family}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="fatherName"
         formik={formik}
         placeholder={`${AddManagersPage.fatherNamePlaceholder}`}
         label={`${AddManagersPage.fatherName}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <DateInput
         name="birthDate"
+        formik={formik}
         value={formik.values.birthDate}
         onChange={(event) => {
           formik.setFieldValue("birthDate", event.toString());
         }}
         label={`${AddManagersPage.birthDate}`}
+        placeholder={`${AddManagersPage.birthDate}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="placeOfBirth"
         formik={formik}
         placeholder={`${AddManagersPage.placeOfBirthPlaceholder}`}
         label={`${AddManagersPage.placeOfBirth}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="identityNo"
@@ -109,6 +145,7 @@ const StepOne = ({
         placeholder={`${AddManagersPage.identityNoPlaceholder}`}
         label={`${AddManagersPage.identityNo}`}
         type="number"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="nationalCode"
@@ -116,6 +153,7 @@ const StepOne = ({
         placeholder={`${AddManagersPage.nationalCodePlaceholder}`}
         label={`${AddManagersPage.nationalCode}`}
         type="number"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <SelectInput
         name="grade"
@@ -123,6 +161,7 @@ const StepOne = ({
         placeholder={`${AddManagersPage.grade}`}
         label={`${AddManagersPage.grade}`}
         selectOptions={gradeOptions}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <SelectInput
         name="bloodType"
@@ -130,15 +169,10 @@ const StepOne = ({
         placeholder={`${AddManagersPage.bloodType}`}
         label={`${AddManagersPage.bloodType}`}
         selectOptions={bloodTypeOptions}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
-
-      <button
-        type="submit"
-        // disabled={!formik.isValid}
-        className=" outline-none w-full border-none rounded text-white bg-secondaryColor my-8 px-4 py-3 cursor-pointer disabled:border-[#999999] disabled:bg-[#cccccc] disabled:text-[#666666] disabled:cursor-not-allowed"
-      >
-        {general.next}
-      </button>
+      <SubmitButton disabled="" submit={general.next} />
+      {/* disabled={!formik.isValid} */}
     </form>
   );
 };

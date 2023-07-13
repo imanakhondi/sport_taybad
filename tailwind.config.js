@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: 'class',
   theme: {
     container: {
       center: true,
@@ -16,12 +17,18 @@ module.exports = {
         "BlobForm": "url('./images/Ellipse.png')",
       },
       colors: {
-        mainBgColor: "#212227",
-        navBgColor: "#1B1C21",
-        borderColor: "#313131",
+        mainBgColor: "#F6F6F4",
+        navBgColor: "#F6F6F4",
+        borderColor: "#D3D3D3",
         primaryColor: "#A4A4A4",
         secondaryColor: "#1f4caf",
         warningColor: "#F5C451",
+        mainBgColorDark: "#212227",
+        navBgColorDark: "#1B1C21",
+        borderColorDark: "#313131",
+        primaryColorDark: "#636363",
+        secondaryColorDark: "#1f4caf",
+        warningColorDark: "#1f4caf",
       },
       keyframes: {
         leftAnimate: {

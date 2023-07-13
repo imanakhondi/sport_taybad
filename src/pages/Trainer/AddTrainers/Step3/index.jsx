@@ -1,11 +1,17 @@
 import { useFormik } from "formik";
 import Input from "../../../../common/Input/Input";
-import { AddTrainersPage, general } from "../../../../constants/strings/fa";
+import {
+  AddTrainersPage,
+  general,
+  validation,
+} from "../../../../constants/strings/fa";
 import * as Yup from "yup";
 import SelectInput from "../../../../common/Input/SelectInput";
 import CheckBoxInput from "../../../../common/Input/CheckBoxInput";
 import { useState } from "react";
 import AddMultiInput from "../../../../common/Input/AddMultiInput";
+import { Trainer } from "../../../../http/entities/Trainer";
+import SubmitButton from "../../../../common/Input/SubmitButton";
 
 const experienceOptions = [
   { id: 1, title: `${AddTrainersPage.oneToFourYears}` },
@@ -40,13 +46,12 @@ const initialValues = {
   coachingLevels: [],
 };
 const validationSchema = Yup.object({
-  name: Yup.string(),
-  // family: Yup.string().required("نام ضروری است"),
-  // fatherName: Yup.string().required("نام ضروری است"),
-  // birthDate: Yup.string().required("نام ضروری است"),
-  // placeOfBirth: Yup.string().required("نام ضروری است"),
-  // identityNo: Yup.string().required("نام ضروری است"),
-  // nationalCode: Yup.string().required("نام ضروری است"),
+  sportsField: Yup.string().required(
+    `${validation.requiredMessage.replace(
+      ":field",
+      AddTrainersPage.sportsField
+    )}`
+  ),
 });
 
 const StepThree = ({
@@ -68,10 +73,74 @@ const StepThree = ({
   const [arrEwat, setArrEwat] = useState(initialValues.workshopsAsParticipant);
   const [counter, setCounter] = useState(1);
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
+    const trainer = new Trainer();
+
     const data = { ...formData, ...values };
     setFormData(data);
-    setActiveStepIndex(activeStepIndex + 1);
+    const {
+      name,
+      family,
+      fatherName,
+      birthDate,
+      placeOfBirth,
+      identityNo,
+      nationalCode,
+      mobile,
+      tel,
+      fieldOfStudy,
+      email,
+      homeAddress,
+      workAddress,
+      sportsField,
+      experience,
+      latestValidCoachingCertificate,
+      lastYearObtainingCoachingDegree,
+      records,
+      instructorsCoachingCourses,
+      placeObtainingCoachingCertificates,
+      coachingRecords,
+      honors,
+      executiveProfessionalRecords,
+      workshopsAsParticipant,
+      educationalWorkshopsAsTeacher,
+      coachingLevels,
+    } = data;
+    const result = await trainer.storeTrainer({
+      name,
+      family,
+      fatherName,
+      birthDate,
+      placeOfBirth,
+      identityNo,
+      nationalCode,
+      mobile,
+      tel,
+      fieldOfStudy,
+      email,
+      homeAddress,
+      workAddress,
+      sportsField,
+      experience,
+      latestValidCoachingCertificate,
+      lastYearObtainingCoachingDegree,
+      records,
+      instructorsCoachingCourses,
+      placeObtainingCoachingCertificates,
+      coachingRecords,
+      honors,
+      executiveProfessionalRecords,
+      workshopsAsParticipant,
+      educationalWorkshopsAsTeacher,
+      coachingLevels,
+    });
+    if (result === null) {
+      //show message failure
+
+      return;
+    }
+    //show message success
+    // setActiveStepIndex(activeStepIndex + 1);
   };
   const formik = useFormik({
     initialValues,
@@ -99,7 +168,7 @@ const StepThree = ({
   const handleChange = (e, set, setValue) => {
     e.preventDefault();
 
-    const index =parseInt( e.target.id.split("").slice(-1)[0]);
+    const index = parseInt(e.target.id.split("").slice(-1)[0]);
     set((s) => {
       const newArr = s.slice();
       newArr[index].value = e.target.value;
@@ -118,7 +187,7 @@ const StepThree = ({
         formik={formik}
         placeholder={`${AddTrainersPage.sportsFieldPlaceholder}`}
         label={`${AddTrainersPage.sportsField}`}
-        type="number"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <SelectInput
         name="experience"
@@ -126,12 +195,14 @@ const StepThree = ({
         placeholder={`${AddTrainersPage.experience}`}
         label={`${AddTrainersPage.experience}`}
         selectOptions={experienceOptions}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="latestValidCoachingCertificate"
         formik={formik}
         placeholder={`${AddTrainersPage.latestValidCoachingCertificatePlaceholder}`}
         label={`${AddTrainersPage.latestValidCoachingCertificate}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="lastYearObtainingCoachingDegree"
@@ -139,6 +210,7 @@ const StepThree = ({
         placeholder={`${AddTrainersPage.lastYearObtainingCoachingDegreePlaceholder}`}
         label={`${AddTrainersPage.lastYearObtainingCoachingDegree}`}
         type="number"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <CheckBoxInput
         name="coachingLevels"
@@ -154,6 +226,7 @@ const StepThree = ({
         }
         arr={arrIcc}
         name="fieldIcc"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <AddMultiInput
         title={AddTrainersPage.placeObtainingCoachingCertificates}
@@ -163,6 +236,7 @@ const StepThree = ({
         }
         arr={arrPcc}
         name="fieldPcc"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <AddMultiInput
         title={AddTrainersPage.coachingRecords}
@@ -170,6 +244,7 @@ const StepThree = ({
         onChange={(e) => handleChange(e, setArrCr, "coachingRecords")}
         arr={arrCr}
         name="fieldCr"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <AddMultiInput
         title={AddTrainersPage.honors}
@@ -177,6 +252,7 @@ const StepThree = ({
         onChange={(e) => handleChange(e, setArrHo, "honors")}
         arr={arrHo}
         name="fieldHo"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <AddMultiInput
         title={AddTrainersPage.executiveProfessionalRecords}
@@ -186,6 +262,7 @@ const StepThree = ({
         }
         arr={arrEpr}
         name="fieldEpr"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <AddMultiInput
         title={AddTrainersPage.workshopsAsParticipant}
@@ -193,6 +270,7 @@ const StepThree = ({
         onChange={(e) => handleChange(e, setArrWap, "workshopsAsParticipant")}
         arr={arrWap}
         name="fieldWap"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <AddMultiInput
         title={AddTrainersPage.educationalWorkshopsAsTeacher}
@@ -202,15 +280,11 @@ const StepThree = ({
         }
         arr={arrEwat}
         name="fieldEwat"
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
-
-      <button
-        type="submit"
-        // disabled={!formik.isValid}
-        className=" outline-none w-full border-none rounded text-white bg-secondaryColor my-8 px-4 py-3 cursor-pointer disabled:border-[#999999] disabled:bg-[#cccccc] disabled:text-[#666666] disabled:cursor-not-allowed"
-      >
-        {general.add}
-      </button>
+      <SubmitButton disabled="" submit={general.add} />
+      {/* disabled={!formik.isValid} */}
+    
     </form>
   );
 };

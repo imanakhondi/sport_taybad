@@ -8,15 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "../../../hooks/useQuery";
 import { User } from "../../../http/entities";
 import { fetchLoginAction } from "../../../state/user/userAction";
+import SubmitButton from "../../../common/Input/SubmitButton";
 
 const initialValues = {
-  email: "",
+  username: "",
   password: "",
 };
 
 const validationSchema = Yup.object({
-  email: Yup.string(),
-  password: Yup.string().required(""),
+  username: Yup.string(),
+  password: Yup.string(),
 });
 
 const Login = () => {
@@ -24,15 +25,17 @@ const Login = () => {
   const redirect = query.get("redirect") || "panel/dashboard";
   const navigate = useNavigate();
   const userState = useSelector((state) => state.userReducer);
+  const messageState = useSelector((state) => state.messageReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (userState.isAuthenticated) navigate(`/${redirect}`);
   }, [redirect, userState]);
 
-  const onSubmit = (values) => {
-    dispatch(fetchLoginAction(values));
-    if (userState.isAuthenticated){
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+    dispatch(fetchLoginAction(username, password));
+    if (userState.isAuthenticated) {
       navigate(`/${redirect}`);
     }
   };
@@ -44,7 +47,7 @@ const Login = () => {
     validateOnMount: true,
   });
   return (
-    <div className="container overflow-hidden">
+    <div className="container overflow-hidden bg-mainBgColorDark">
       <div className="flex min-h-screen max-w-7xl mx-auto font-IRANSansWeb">
         <div className="hidden flex-[3] md:flex items-center justify-center text-white">
           <h1 className=" text-2xl font-bold border-b border-dashed pb-10 animate-rightAnimate">
@@ -60,30 +63,29 @@ const Login = () => {
               onSubmit={formik.handleSubmit}
               className="flex flex-col gap-y-5 w-full"
             >
+              {/* {messageState && (
+                <span className="text-red-500 text-xs font-semibold  ">
+                  {messageState}
+                </span>
+              )} */}
               <Input
-                name="email"
+                name="username"
                 formik={formik}
-                placeholder={`${loginUserPage.emailPlaceholder}`}
+                placeholder={`${loginUserPage.usernamePlaceholder}`}
                 custom="lg:w-full"
-                customStyleInput="!border-[#AFAFAF] rounded-xl"
-                type="email"
+                customStyleInput="!border-[#AFAFAF] rounded-xl placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
               />
               <Input
                 name="password"
                 formik={formik}
                 placeholder={`${loginUserPage.passwordPlaceholder}`}
                 custom="lg:w-full"
-                customStyleInput="!border-[#AFAFAF] rounded-xl"
+                customStyleInput="!border-[#AFAFAF] rounded-xl placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
                 type="password"
               />
 
-              <button
-                type="submit"
-                // disabled={!formik.isValid}
-                className=" bg-gradient-to-r from-secondaryColor to-[#040F75] rounded-xl py-2 px-3 mt-3"
-              >
-                {loginUserPage.submit}
-              </button>
+              <SubmitButton disabled="" />
+              {/* disabled={!formik.isValid} */}
             </form>
             <span className="text-xs mt-5">
               {loginUserPage.forgot}

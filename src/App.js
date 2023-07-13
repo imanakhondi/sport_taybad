@@ -4,7 +4,7 @@ import { Routes } from "./navigation";
 
 function App() {
   return(
-    <div className="min-h-screen bg-mainBgColor w-full text-primaryColor">
+    <div className="min-h-screen bg-mainBgColor dark:bg-mainBgColorDark w-full text-primaryColor dark:text-primaryColorDark">
        <Routes />
     </div>
   );

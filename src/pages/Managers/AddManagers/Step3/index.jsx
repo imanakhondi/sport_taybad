@@ -1,11 +1,16 @@
 import { useFormik } from "formik";
 import Input from "../../../../common/Input/Input";
-import { AddManagersPage, general } from "../../../../constants/strings/fa";
-
+import {
+  AddManagersPage,
+  general,
+  validation,
+} from "../../../../constants/strings/fa";
 import * as Yup from "yup";
 import SelectInput from "../../../../common/Input/SelectInput";
 import TextAreaInput from "../../../../common/Input/TextAreaInput";
 import CheckBoxInput from "../../../../common/Input/CheckBoxInput";
+import { Manager } from "../../../../http/entities";
+import SubmitButton from "../../../../common/Input/SubmitButton";
 
 const managementExperienceOptions = [
   { id: 1, title: `${AddManagersPage.oneToFourYears}` },
@@ -29,13 +34,12 @@ const initialValues = {
   honors: "",
 };
 const validationSchema = Yup.object({
-  name: Yup.string(),
-  // family: Yup.string().required("نام ضروری است"),
-  // fatherName: Yup.string().required("نام ضروری است"),
-  // birthDate: Yup.string().required("نام ضروری است"),
-  // placeOfBirth: Yup.string().required("نام ضروری است"),
-  // identityNo: Yup.string().required("نام ضروری است"),
-  // nationalCode: Yup.string().required("نام ضروری است"),
+  sportsField: Yup.string().required(
+    `${validation.requiredMessage.replace(
+      ":field",
+      AddManagersPage.sportsField
+    )}`
+  ),
 });
 
 const StepThree = ({
@@ -44,10 +48,58 @@ const StepThree = ({
   activeStepIndex,
   setActiveStepIndex,
 }) => {
-  const onSubmit = (values) => {
+  const manager = new Manager();
+
+  const onSubmit = async (values) => {
     const data = { ...formData, ...values };
     setFormData(data);
-    setActiveStepIndex(activeStepIndex + 1);
+    const {
+      name,
+      family,
+      fatherName,
+      birthDate,
+      placeOfBirth,
+      identityNo,
+      nationalCode,
+      mobile,
+      tel,
+      fieldOfStudy,
+      email,
+      homeAddress,
+      workAddress,
+      sportsField,
+      managementExperience,
+      nameOfClub,
+      managementLevels,
+      honors,
+    } = data;
+    const result = await manager.storeManager(
+      name,
+      family,
+      fatherName,
+      birthDate,
+      placeOfBirth,
+      identityNo,
+      nationalCode,
+      mobile,
+      tel,
+      fieldOfStudy,
+      email,
+      homeAddress,
+      workAddress,
+      sportsField,
+      managementExperience,
+      nameOfClub,
+      managementLevels,
+      honors
+    );
+    if (result === null) {
+      //show message failure
+
+      return;
+    }
+    //show message success
+    // setActiveStepIndex(activeStepIndex + 1);
   };
   const formik = useFormik({
     initialValues,
@@ -65,6 +117,7 @@ const StepThree = ({
         formik={formik}
         placeholder={`${AddManagersPage.sportsFieldPlaceholder}`}
         label={`${AddManagersPage.sportsField}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <SelectInput
         name="managementExperience"
@@ -72,18 +125,21 @@ const StepThree = ({
         placeholder={`${AddManagersPage.managementExperience}`}
         label={`${AddManagersPage.managementExperience}`}
         selectOptions={managementExperienceOptions}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <Input
         name="nameOfClub"
         formik={formik}
         placeholder={`${AddManagersPage.nameOfClubPlaceholder}`}
         label={`${AddManagersPage.nameOfClub}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
       <CheckBoxInput
         name="managementLevels"
         formik={formik}
         label={`${AddManagersPage.managementLevels}`}
         checkBoxOptions={managementLevelsOptions}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
 
       <TextAreaInput
@@ -91,15 +147,10 @@ const StepThree = ({
         formik={formik}
         placeholder={`${AddManagersPage.honorsPlaceholder}`}
         label={`${AddManagersPage.honors}`}
+        customStyleInput=" placeholder:!text-white/20 focus:ring-primaryColorDark focus:border-primaryColorDark bg-mainBgColorDark border-borderColorDark"
       />
-
-      <button
-        type="submit"
-        // disabled={!formik.isValid}
-        className=" outline-none w-full border-none rounded text-white bg-secondaryColor my-8 px-4 py-3 cursor-pointer disabled:border-[#999999] disabled:bg-[#cccccc] disabled:text-[#666666] disabled:cursor-not-allowed"
-      >
-        {general.add}
-      </button>
+      <SubmitButton disabled="" submit={general.add} />
+      {/* disabled={!formik.isValid} */}
     </form>
   );
 };

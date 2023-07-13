@@ -1,4 +1,3 @@
-import axios from "axios";
 import * as userType from "./userTypes";
 import { User } from "../../http/entities";
 import utils from "../../utils/Utils";

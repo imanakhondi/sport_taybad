@@ -5,7 +5,7 @@ import sports from "../../images/sports.png";
 
 const HomePage = () => {
   return (
-    <div className="container overflow-hidden">
+    <div className="container overflow-hidden bg-mainBgColorDark">
       <div className="my-10 h-full flex-col md:flex md:flex-row md:my-0">
         <div className=" flex flex-1 flex-col items-center justify-center animate-rightAnimate">
           <h1 className="text-xl md:text-3xl mb-10 font-IRANSansWeb text-white">

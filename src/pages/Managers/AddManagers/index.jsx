@@ -10,7 +10,7 @@ const AddManagers = () => {
   const [formData, setFormData] = useState({});
   return (
     <FormStep activeStepIndex={activeStepIndex} title={AddManagersPage._title}>
-      <div className=" xl:max-w-2xl mx-auto bg-navBgColor rounded-2xl p-5 mt-10">
+      <div className=" xl:max-w-2xl mx-auto bg-navBgColorDark rounded-2xl p-5 mt-10">
         {activeStepIndex === 0 && (
           <StepOne
             formData={formData}

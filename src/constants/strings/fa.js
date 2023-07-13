@@ -44,6 +44,25 @@ export const utilsMSG = {
   notValidJson: "فایل دریافتی نامعتبر است.",
 };
 
+export const validation = {
+  stringMessage: ":field تنها باید شامل حروف باشد.",
+  numberMessage: ":field تنها باید شامل اعداد باشد.",
+  asciiStringMessage: ":field تنها باید شامل حروف انگلیسی باشد.",
+  requiredMessage: "لطفا :field را وارد نمایید.",
+  validMessage: "لطفا :field را به درستی وارد نمایید.",
+  confirmedMessage: ":field با تاییدیه اش مطابقت نمی نماید.",
+  emailMessage: "پست الکترونیک نامعتبر است.",
+  minMessage: "حداقل طول فیلد :field، :min حرف است.",
+  maxMessage: "حداکثر طول فیلد :field، :max حرف است.",
+  minDigitMessage: "حداقل طول فیلد :field، :min رقم است.",
+  maxDigitMessage: "حداکثر طول فیلد :field، :max رقم است.",
+  exactDigitMessage: "طول فیلد :field، :digit رقم است.",
+  betweenDigitsMessage:
+      "طول فیلد :field، حداقل :digit1 و حداکثر :digit2 رقم است.",
+  minNumberMessage: "حداقل مقدار فیلد :field، باید :min باشد.",
+  maxNumberMessage: "حداکثر مقدار فیلد :field، باید :max باشد.",
+};
+
 export const loginUserPage = {
   _title: "ورود به حساب کاربری",
   _subTitle: " وارد حساب کاربری خود شوید.",
@@ -259,6 +278,11 @@ export const AddManagersPage = {
   state: "استان",
   country: "کشوری",
   national: "ملی",
+  diploma: "دیپلم",
+  AssociateDegree: "فوق دیپلم",
+  bachelorDegree: "کارشناسی",
+  masterDegree: "کارشناسی ارشد",
+  PhD: "دکترا",
 };
 
 export const AddTrainersPage = {

@@ -67,6 +67,21 @@
   content: "\e9d9";
 }
 
+.icon-user4:before {
+  content: "\eaae";
+}
+
+.icon-user-edit4:before {
+  content: "\eab1";
+}
+
+.icon-sun-14:before {
+  content: "\ea79";
+}
+
+.icon-sun-1:before {
+  content: "\f0aa";
+}
 /*  custom input date picker */
 
 .custom-input {
@@ -87,6 +102,11 @@
   animation-fill-mode: forwards;
   animation-delay: .1s;
 
+}
+
+.custom-input::placeholder{
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
 }
 
 .custom-input:focus {
