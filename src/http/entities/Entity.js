@@ -5,7 +5,7 @@ import { BASE_URL, BASE_PATH } from "../../constants/index";
 
 class Entity {
   constructor() {
-    this.errorMasage = "";
+    this.errorMassage = "";
     this.errorCode = 0;
   }
 
