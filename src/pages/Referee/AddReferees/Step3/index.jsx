@@ -43,7 +43,7 @@ const initialValues = {
   executiveProfessionalRecords: [],
   workshopsAsParticipant: [],
   educationalWorkshopsAsTeacher: [],
-  RefereesLevels: [],
+  refereesLevels: [],
 };
 const validationSchema = Yup.object({
   sportsField: Yup.string().required(
@@ -98,7 +98,7 @@ const StepThree = ({ formData, setFormData }) => {
       executiveProfessionalRecords,
       workshopsAsParticipant,
       educationalWorkshopsAsTeacher,
-      RefereesLevels,
+      refereesLevels,
     } = data;
     const result = await referee.storeReferee({
       name,
@@ -126,7 +126,7 @@ const StepThree = ({ formData, setFormData }) => {
       executiveProfessionalRecords,
       workshopsAsParticipant,
       educationalWorkshopsAsTeacher,
-      RefereesLevels,
+      refereesLevels,
     });
     if (result === null) {
       //show message failure

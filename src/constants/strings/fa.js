@@ -58,9 +58,22 @@ export const validation = {
   maxDigitMessage: "حداکثر طول فیلد :field، :max رقم است.",
   exactDigitMessage: "طول فیلد :field، :digit رقم است.",
   betweenDigitsMessage:
-      "طول فیلد :field، حداقل :digit1 و حداکثر :digit2 رقم است.",
+    "طول فیلد :field، حداقل :digit1 و حداکثر :digit2 رقم است.",
   minNumberMessage: "حداقل مقدار فیلد :field، باید :min باشد.",
   maxNumberMessage: "حداکثر مقدار فیلد :field، باید :max باشد.",
+};
+
+export const header = {
+  chooseLocale: "انتخاب زبان",
+  us: "English",
+  fa: "فارسی",
+  tools: "امکانات",
+  changePassword: "تغییر کلمه عبور",
+  profile: "پروفایل کاربری",
+  editProfile: "پروفایل کاربری",
+  logout: "خروج از حساب کاربری",
+  messageInbox: "پیام",
+  supportTickets: "تیکت‌ها",
 };
 
 export const loginUserPage = {

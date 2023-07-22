@@ -40,15 +40,15 @@ export class Referee extends Entity {
     executiveProfessionalRecords,
     workshopsAsParticipant,
     educationalWorkshopsAsTeacher,
-    RefereesLevels
+    refereesLevels
   ) {
     return await this.handlePost(`${BASE_PATH}/a/referees/store`, {
       name,
       family,
       father_name: fatherName,
-      birthDate,
+      birth_date:birthDate,
       place_birth: placeOfBirth,
-      identityNo,
+      identity_no:identityNo,
       national_code: nationalCode,
       mobile,
       tel,
@@ -61,14 +61,14 @@ export class Referee extends Entity {
       latest_valid_referees_certificate: latestValidRefereesCertificate,
       last_year_obtaining_referees_degree: lastYearObtainingRefereesDegree,
       records,
-      instructors_Referees_courses: instructorsRefereesCourses,
+      instructors_referees_courses: instructorsRefereesCourses,
       place_obtaining_referees_certificates: placeObtainingRefereesCertificates,
-      Referees_records: refereesRecords,
+      referees_records: refereesRecords,
       honors,
       executive_professional_records: executiveProfessionalRecords,
       workshops_as_participant: workshopsAsParticipant,
       educational_workshops_as_aeacher: educationalWorkshopsAsTeacher,
-      Referees_levels: RefereesLevels,
+      referees_levels: refereesLevels,
     });
   }
 

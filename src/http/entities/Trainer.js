@@ -46,9 +46,9 @@ export class Trainer extends Entity {
       name,
       family,
       father_name: fatherName,
-      birthDate,
+      birth_date:birthDate,
       place_birth: placeOfBirth,
-      identityNo,
+      identity_no:identityNo,
       national_code: nationalCode,
       mobile,
       tel,
@@ -67,7 +67,7 @@ export class Trainer extends Entity {
       honors,
       executive_professional_records:executiveProfessionalRecords,
       workshops_as_participant:workshopsAsParticipant,
-      educational_workshops_as_aeacher:educationalWorkshopsAsTeacher,
+      educational_workshops_as_taeacher:educationalWorkshopsAsTeacher,
       coaching_levels:coachingLevels,
     });
   }
