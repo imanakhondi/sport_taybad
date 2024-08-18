@@ -6,7 +6,6 @@ import Input from "../../../common/Input/Input";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "../../../hooks/useQuery";
-import { User } from "../../../http/entities";
 import { fetchLoginAction } from "../../../state/user/userAction";
 import SubmitButton from "../../../common/Input/SubmitButton";
 
